@@ -15,23 +15,24 @@ public class NumbersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_item);
+        setContentView(R.layout.word_list);
 
         // Ini
-        ArrayList<String> Words = new ArrayList<String>();
+        ArrayList<Word> Words = new ArrayList<Word>();
 
-        Words.add("One");
-        Words.add("Two");
-        Words.add("Three");
-        Words.add("Four");
-        Words.add("Five");
-        Words.add("Six");
-        Words.add("Seven");
-        Words.add("Eight");
-        Words.add("Nine");
-        Words.add("Ten");
+        Words.add(new Word("One", " miwok One"));
+        Words.add(new Word("Two", " miwok Two"));
+        Words.add(new Word("Three", " miwok Three"));
+        Words.add(new Word("Four", " miwok Four"));
+        Words.add(new Word("Five", " miwok Five"));
+        Words.add(new Word("Six", " miwok Six"));
+        Words.add(new Word("Seven", " miwok Seven"));
+        Words.add(new Word("Eight", " miwok Eight"));
+        Words.add(new Word("Nine", " miwok Nine"));
+        Words.add(new Word("White", " miwok Ten"));
 
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Words);
+
+        WordAdapter listAdapter = new WordAdapter(this, Words);
 
         ListView listView = findViewById(R.id.list);
 

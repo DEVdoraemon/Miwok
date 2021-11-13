@@ -1,10 +1,8 @@
 package com.awasthir.miwok;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -13,22 +11,23 @@ public class PhrasesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_item);
+        setContentView(R.layout.word_list);
 
-        ArrayList<String> Words = new ArrayList<String>();
+        ArrayList<Word> Words = new ArrayList<>();
 
-        Words.add("Hi!");
-        Words.add("Hello");
-        Words.add("Bye");
-        Words.add("Good night");
-        Words.add("Good Morning");
-        Words.add("Good Noon");
-        Words.add("Good Afternoon");
-        Words.add("Goodbye");
-        Words.add("Alas!");
-        Words.add("Oh!");
+        Words.add(new Word("Hi!", " miwok Hi!"));
+        Words.add(new Word("Hello", " miwok Hello"));
+        Words.add(new Word("Bye", " miwok Bye"));
+        Words.add(new Word("Good night", " miwok Good night"));
+        Words.add(new Word("Good Morning", " miwok Good Morning"));
+        Words.add(new Word("Good Noon", " miwok Good Noon"));
+        Words.add(new Word("Good Afternoon", " miwok Good Afternoon"));
+        Words.add(new Word("Goodbye", " miwok Goodbye"));
+        Words.add(new Word("Alas!", " miwok Alas!"));
+        Words.add(new Word("Oh!", " miwok Oh!"));
 
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Words);
+
+        WordAdapter listAdapter = new WordAdapter(this, Words);
 
         ListView listView = findViewById(R.id.list);
 

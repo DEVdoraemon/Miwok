@@ -12,23 +12,23 @@ public class FamilyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_item);
+        setContentView(R.layout.word_list);
 
-        ArrayList<String> Words = new ArrayList<String>();
+        ArrayList<Word> Words = new ArrayList<>();
 
-        Words.add("Papa");
-        Words.add("Mummi");
-        Words.add("Dada");
-        Words.add("Dadi");
-        Words.add("Bhaiya");
-        Words.add("Bhabhi");
-        Words.add("Mama");
-        Words.add("Mami");
-        Words.add("Chacha");
-        Words.add("Chachi");
+        Words.add(new Word("Papa", " miwok Papa"));
+        Words.add(new Word("Mummi", " miwok Mummi"));
+        Words.add(new Word("Dada", " miwok Dada"));
+        Words.add(new Word("Dadi", " miwok Dadi"));
+        Words.add(new Word("Bhaiya", " miwok Bhaiya"));
+        Words.add(new Word("Bhabhi", " miwok Bhabhi"));
+        Words.add(new Word("Mama", " miwok Mama"));
+        Words.add(new Word("Mami", " miwok Mami"));
+        Words.add(new Word("Chacha", " miwok Chacha"));
+        Words.add(new Word("Chachi", " miwok Chachi"));
 
 
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Words);
+        WordAdapter listAdapter = new WordAdapter(this, Words);
 
         ListView listView = findViewById(R.id.list);
 
