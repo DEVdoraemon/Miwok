@@ -20,16 +20,16 @@ public class NumbersActivity extends AppCompatActivity {
         // Ini
         ArrayList<Word> Words = new ArrayList<Word>();
 
-        Words.add(new Word("One", " miwok One"));
-        Words.add(new Word("Two", " miwok Two"));
-        Words.add(new Word("Three", " miwok Three"));
-        Words.add(new Word("Four", " miwok Four"));
-        Words.add(new Word("Five", " miwok Five"));
-        Words.add(new Word("Six", " miwok Six"));
-        Words.add(new Word("Seven", " miwok Seven"));
-        Words.add(new Word("Eight", " miwok Eight"));
-        Words.add(new Word("Nine", " miwok Nine"));
-        Words.add(new Word("White", " miwok Ten"));
+        Words.add(new Word("One", " miwok One", R.drawable.number_one));
+        Words.add(new Word("Two", " miwok Two", R.drawable.number_two));
+        Words.add(new Word("Three", " miwok Three", R.drawable.number_three));
+        Words.add(new Word("Four", " miwok Four", R.drawable.number_four));
+        Words.add(new Word("Five", " miwok Five", R.drawable.number_five));
+        Words.add(new Word("Six", " miwok Six", R.drawable.number_six));
+        Words.add(new Word("Seven", " miwok Seven", R.drawable.number_seven));
+        Words.add(new Word("Eight", " miwok Eight", R.drawable.number_eight));
+        Words.add(new Word("Nine", " miwok Nine", R.drawable.number_nine));
+        Words.add(new Word("White", " miwok Ten", R.drawable.number_ten));
 
 
         WordAdapter listAdapter = new WordAdapter(this, Words);

@@ -15,16 +15,16 @@ public class ColorsActivity extends AppCompatActivity {
 
         ArrayList<Word> Words = new ArrayList<>();
 
-        Words.add(new Word("Black", " miwok Black"));
-        Words.add(new Word("Blue", " miwok Blue"));
-        Words.add(new Word("Green", " miwok Green"));
-        Words.add(new Word("Violet", " miwok Violet"));
-        Words.add(new Word("Crimson", " miwok Crimson"));
-        Words.add(new Word("Red", " miwok Red"));
-        Words.add(new Word("SkyBlue", " miwok SkyBlue"));
-        Words.add(new Word("Pink", " miwok Pink"));
-        Words.add(new Word("Grey", " miwok Grey"));
-        Words.add(new Word("White", " miwok White"));
+        Words.add(new Word("Black", " miwok Black", R.drawable.color_black));
+        Words.add(new Word("Blue", " miwok Blue", R.drawable.color_black));
+        Words.add(new Word("Green", " miwok Green", R.drawable.color_green));
+        Words.add(new Word("Brown", " miwok Brown", R.drawable.color_brown));
+        Words.add(new Word("Yellow", " miwok Yellow", R.drawable.color_dusty_yellow));
+        Words.add(new Word("Red", " miwok Red", R.drawable.color_red));
+        Words.add(new Word("SkyBlue", " miwok SkyBlue", android.R.color.holo_blue_light));
+        Words.add(new Word("Pink", " miwok Pink", R.drawable.color_red));
+        Words.add(new Word("Gray", " miwok Gray", R.drawable.color_gray));
+        Words.add(new Word("White", " miwok White", R.color.white));
 
         WordAdapter listAdapter = new WordAdapter(this, Words);
 
