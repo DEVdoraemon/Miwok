@@ -19,6 +19,8 @@ public class NumbersActivity extends AppCompatActivity {
 
     MediaPlayer mMediaPlayer;
 
+    private MediaPlayer.OnCompletionListener mCompletionListener = mediaPlayer -> releaseMediaPlayer();
+
     // Override abstract function to modify the onCreate behavior of Numbers Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +56,29 @@ public class NumbersActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, R.raw.color_black);
+                Word word = Words.get(position);
+
+                releaseMediaPlayer();
+
+                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getmAudioResourceId());
                 mMediaPlayer.start();
+
+                releaseMediaPlayer();
             }
         });
+    }
 
+    // don't comment otherwise app will crash unexpectedly
+    @Override
+    public void onStop () {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
+    private void releaseMediaPlayer () {
+        if (mMediaPlayer != null) {
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
     }
 }
