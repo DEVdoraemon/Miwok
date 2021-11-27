@@ -22,12 +22,12 @@
         <activity
             android:name=".FamilyActivity"
             android:exported="false"
-            android:label="@string/colors"
+            android:label="@string/family"
             android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".PhrasesActivity"
             android:exported="false"
-            android:label="@string/colors"
+            android:label="@string/phrases"
             android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
