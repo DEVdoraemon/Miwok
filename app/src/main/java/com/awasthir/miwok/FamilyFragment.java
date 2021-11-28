@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class FamilyFragment extends Fragment {
 
     private AudioManager mAudioManager;
 
-    private AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+    private final AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
@@ -38,7 +37,7 @@ public class FamilyFragment extends Fragment {
         }
     };
 
-    private MediaPlayer.OnCompletionListener mCompletionListener = mediaPlayer -> releaseMediaPlayer();
+    private final MediaPlayer.OnCompletionListener mCompletionListener = mediaPlayer -> releaseMediaPlayer();
 
 
     @Override
@@ -47,7 +46,7 @@ public class FamilyFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.word_list, container, false);
 
-        mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager = (AudioManager) requireActivity().getSystemService(Context.AUDIO_SERVICE);
 
         ArrayList<Word> Words = new ArrayList<>();
 
@@ -69,23 +68,20 @@ public class FamilyFragment extends Fragment {
 
         listView.setAdapter(listAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Word word = Words.get(i);
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Word word = Words.get(i);
 
-                releaseMediaPlayer();
+            releaseMediaPlayer();
 
-                int result = mAudioManager.requestAudioFocus(mAudioFocusChangeListener,
-                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+            int result = mAudioManager.requestAudioFocus(mAudioFocusChangeListener,
+                    AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
-                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                    mMediaPlayer = MediaPlayer.create(getActivity(), word.getmAudioResourceId());
+            if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                mMediaPlayer = MediaPlayer.create(getActivity(), word.getmAudioResourceId());
 
-                    mMediaPlayer.start();
+                mMediaPlayer.start();
 
-                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
-                }
+                mMediaPlayer.setOnCompletionListener(mCompletionListener);
             }
         });
 
@@ -103,6 +99,7 @@ public class FamilyFragment extends Fragment {
         if (mMediaPlayer != null) {
             mMediaPlayer.release();
             mMediaPlayer = null;
+            mAudioManager.abandonAudioFocus(mAudioFocusChangeListener);
         }
     }
 }

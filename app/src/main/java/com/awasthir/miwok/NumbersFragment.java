@@ -20,7 +20,7 @@ public class NumbersFragment extends Fragment {
 
     private AudioManager mAudioManager;
 
-    private AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+    private final AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
@@ -36,7 +36,7 @@ public class NumbersFragment extends Fragment {
         }
     };
 
-    private MediaPlayer.OnCompletionListener mCompletionListener =
+    private final MediaPlayer.OnCompletionListener mCompletionListener =
             mediaPlayer -> releaseMediaPlayer();
 
     // Override abstract function to modify the onCreate behavior of Numbers Activity
@@ -47,7 +47,7 @@ public class NumbersFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.word_list, container, false);
 
-        mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        mAudioManager = (AudioManager) requireActivity().getSystemService(Context.AUDIO_SERVICE);
 
         // Ini
         final ArrayList<Word> Words = new ArrayList<>();
@@ -104,6 +104,8 @@ public class NumbersFragment extends Fragment {
         if (mMediaPlayer != null) {
             mMediaPlayer.release();
             mMediaPlayer = null;
+
+            mAudioManager.abandonAudioFocus(mAudioFocusChangeListener);
         }
     }
 
