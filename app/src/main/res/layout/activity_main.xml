@@ -6,48 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/numbers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:text="@string/numbers"/>
 
-    <TextView
-        android:id="@+id/family"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:text="@string/family"/>
 
-    <TextView
-        android:id="@+id/colors"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:text="@string/colors"/>
+        android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/phrases"
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:text="@string/phrases"/>
+        android:layout_height="match_parent"
+        />
+
+<!--    <TextView-->
+<!--        android:id="@+id/numbers"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="sans-serif"-->
+<!--        android:textSize="18sp"-->
+<!--        android:paddingRight="16dp"-->
+<!--        android:paddingLeft="16dp"-->
+<!--        android:paddingTop="16dp"-->
+<!--        android:text="@string/numbers"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/family"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="sans-serif"-->
+<!--        android:textSize="18sp"-->
+<!--        android:paddingRight="16dp"-->
+<!--        android:paddingLeft="16dp"-->
+<!--        android:paddingTop="16dp"-->
+<!--        android:text="@string/family"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/colors"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="sans-serif"-->
+<!--        android:textSize="18sp"-->
+<!--        android:paddingRight="16dp"-->
+<!--        android:paddingLeft="16dp"-->
+<!--        android:paddingTop="16dp"-->
+<!--        android:text="@string/colors"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/phrases"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="sans-serif"-->
+<!--        android:textSize="18sp"-->
+<!--        android:paddingRight="16dp"-->
+<!--        android:paddingLeft="16dp"-->
+<!--        android:paddingTop="16dp"-->
+<!--        android:text="@string/phrases"/>-->
 
 </LinearLayout>

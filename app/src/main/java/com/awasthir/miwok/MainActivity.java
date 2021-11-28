@@ -1,10 +1,11 @@
 package com.awasthir.miwok;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,34 +21,52 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        // find the id of numbers textview
-        TextView numbers = findViewById(R.id.numbers);
-        // set the onCLickListener on numbers Textview
-        numbers.setOnClickListener(v -> {
-            // create an intent of numbers TextView
-            Intent numbersIntent = new Intent(MainActivity.this, NumbersActivity.class);
-            startActivity(numbersIntent);
-        });
+        ViewPager viewPager = findViewById(R.id.viewpager);
 
+        CategoryAdapter adapter = new CategoryAdapter(this, getSupportFragmentManager());
 
-        TextView colors = findViewById(R.id.colors);
-        colors.setOnClickListener(v -> {
-            Intent colorsIntent = new Intent(MainActivity.this, ColorsActivity.class);
-            startActivity(colorsIntent);
-        });
+        viewPager.setAdapter(adapter);
 
+        // Find the tab layout that shows the tabs
+        TabLayout tabLayout = findViewById(R.id.tabs);
 
-        TextView family = findViewById(R.id.family);
-        family.setOnClickListener(v -> {
-            Intent familyIntent = new Intent(MainActivity.this, FamilyActivity.class);
-            startActivity(familyIntent);
-        });
+        // Connect the tab layout with the view pager. This will
+        //   1. Update the tab layout when the view pager is swiped
+        //   2. Update the view pager when a tab is selected
+        //   3. Set the tab layout's tab names with the view pager's adapter's titles
+        //      by calling onPageTitle()
+        tabLayout.setupWithViewPager(viewPager);
 
-
-        TextView phrases = findViewById(R.id.phrases);
-        phrases.setOnClickListener(v -> {
-            Intent phrasesIntent = new Intent(MainActivity.this, PhrasesActivity.class);
-            startActivity(phrasesIntent);
-        });
+/*
+//        // find the id of numbers textview
+//        TextView numbers = findViewById(R.id.numbers);
+//        // set the onCLickListener on numbers Textview
+//        numbers.setOnClickListener(v -> {
+//            // create an intent of numbers TextView
+//            Intent numbersIntent = new Intent(MainActivity.this, NumbersActivity.class);
+//            startActivity(numbersIntent);
+//        });
+//
+//
+//        TextView colors = findViewById(R.id.colors);
+//        colors.setOnClickListener(v -> {
+//            Intent colorsIntent = new Intent(MainActivity.this, ColorsActivity.class);
+//            startActivity(colorsIntent);
+//        });
+//
+//
+//        TextView family = findViewById(R.id.family);
+//        family.setOnClickListener(v -> {
+//            Intent familyIntent = new Intent(MainActivity.this, FamilyActivity.class);
+//            startActivity(familyIntent);
+//        });
+//
+//
+//        TextView phrases = findViewById(R.id.phrases);
+//        phrases.setOnClickListener(v -> {
+//            Intent phrasesIntent = new Intent(MainActivity.this, PhrasesActivity.class);
+//            startActivity(phrasesIntent);
+//        });
+ */
     }
 }
