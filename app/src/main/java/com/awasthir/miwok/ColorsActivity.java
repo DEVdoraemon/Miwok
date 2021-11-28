@@ -1,5 +1,6 @@
 package com.awasthir.miwok;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,23 @@ import java.util.ArrayList;
 public class ColorsActivity extends AppCompatActivity {
 
     private MediaPlayer mMediaPlayer;
+
+    AudioManager mAudioManager;
+
+    AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                    focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                mMediaPlayer.pause();
+                mMediaPlayer.seekTo(0);
+            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                mMediaPlayer.start();
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                releaseMediaPlayer();
+            }
+        }
+    };
 
     private MediaPlayer.OnCompletionListener mCompletionListener = mediaPlayer -> releaseMediaPlayer();
 
@@ -47,10 +65,16 @@ public class ColorsActivity extends AppCompatActivity {
 
                 releaseMediaPlayer();
 
-                mMediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getmAudioResourceId());
-                mMediaPlayer.start();
+                int result = mAudioManager.requestAudioFocus(onAudioFocusChangeListener,
+                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
-                mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    mMediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getmAudioResourceId());
+
+                    mMediaPlayer.start();
+
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
             }
         });
     }
